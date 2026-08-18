@@ -226,36 +226,44 @@ main {
   width: 100%;
 }
 
-/* FOTO: besar dulu, lalu fade mengecil ke lebar card */
+/* FOTO: besar dulu (scale, bukan width, biar ga collapse di flex),
+   fade, lalu DIAM di ukuran normal selebar card */
 .gallery-item--photo {
-  max-width: 1000px;   /* <- ukuran BESAR di awal, boleh diubah */
-  transition: max-width 0.9s ease, opacity 0.5s ease;
-}
-
-.gallery-item--photo.is-small {
-  max-width: 100%;      /* mengecil jadi selebar card */
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  transform-origin: center top;
+  transform: scale(1.28);   /* <- seberapa BESAR di awal, boleh diubah */
+  transition: transform 1.6s ease, opacity 0.9s ease;
 }
 
 .gallery-item--photo.is-fading {
   opacity: 0;
 }
 
+.gallery-item--photo.is-small {
+  transform: scale(1);      /* ukuran normal, diam selebar card */
+}
+
 .gallery-item--photo img {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio: 16 / 9;      /* fotomu 1200x675 = pas 16:9 */
+  object-fit: contain;       /* jamin ga ke-crop / ke-zoom */
   display: block;
   background: var(--navy-deep);
 }
 
-/* VIDEO: tinggi ikut rasio video asli, tidak dipotong */
+/* VIDEO: rasio default 16:9 dulu (biar ga collapse/gede sendiri
+   sebelum video ke-load), lalu script.js otomatis sesuaikan
+   ke rasio ASLI video kamu begitu metadata-nya kebaca */
 .gallery-item--video video {
   width: 100%;
+  aspect-ratio: 16 / 9;
   height: auto;
+  object-fit: contain;
   display: block;
   background: var(--navy-deep);
 }
-
 .gallery-item figcaption {
   padding: 0.7rem 0.9rem;
   font-size: 0.82rem;
