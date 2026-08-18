@@ -23,7 +23,7 @@ function goTo(screenId) {
   }
 }
 
-/* ANIMASI FOTO: BESAR -> FADE -> KECIL (SE-LEBAR CARD) */
+/* ANIMASI FOTO: BESAR -> FADE OUT -> KECIL -> FADE IN, lalu DIAM */
 function playPhotoIntro() {
   var photo = document.getElementById('mainPhoto');
   if (!photo) return;
@@ -31,16 +31,25 @@ function playPhotoIntro() {
   photo.classList.remove('is-small', 'is-fading');
 
   window.setTimeout(function () {
-    photo.classList.add('is-fading');
+    photo.classList.add('is-fading'); // mulai fade out (durasi 0.9s, lihat CSS)
 
     window.setTimeout(function () {
-      photo.classList.add('is-small');
-      photo.classList.remove('is-fading');
-    }, 350);
+      photo.classList.add('is-small');     // ganti ukuran selagi transparan
+      photo.classList.remove('is-fading'); // fade in lagi di ukuran kecil
+    }, 900); // HARUS SAMA dengan durasi transition opacity di CSS (0.9s)
 
-  }, 900); // foto tampil besar 0.9 detik sebelum mengecil
+  }, 1800); // foto tampil BESAR selama 1.8 detik dulu sebelum fade, boleh diubah
 }
 
+/* VIDEO: sesuaikan rasio tampilan otomatis ke ukuran video ASLI,
+   supaya seluruh video kelihatan (ga kepotong / ga ke-zoom) */
+document.querySelectorAll('.gallery-item--video video').forEach(function (vid) {
+  vid.addEventListener('loadedmetadata', function () {
+    if (vid.videoWidth && vid.videoHeight) {
+      vid.style.aspectRatio = vid.videoWidth + ' / ' + vid.videoHeight;
+    }
+  });
+});
 /* =====================================================
    EFEK LOVE YANG BERJATUHAN
    ===================================================== */
