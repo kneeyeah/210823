@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary 💕</title>
+
+<!-- Font: Great Vibes (tulisan sambung untuk judul) + Poppins (teks biasa) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!--icon heart dropping -->
+  <div id="heart-field" aria-hidden="true"></div>
+
+  <main>
+    <!--screen 1-->
+    
+    <section id="screen-home" class="screen active">
+      <div class="content">
+        <p class="eyebrow">03 Tahun Bersama</p>
+
+        <!--tulisan utama-->
+        <h1 class="headline">Happy 3rd<br>Anniversary<br>Sayang</h1>
+
+        <p class="subline">click here</p>
+
+        <button class="heart-btn" onclick="goTo('screen-ucapan')" aria-label="Buka ucapan">
+          <svg viewBox="0 0 100 90" class="heart-shape" aria-hidden="true">
+            <path d="M50 88.9c-1.4 0-2.7-.5-3.7-1.5C21.9 66.9 6 51.7 6 33.9 6 19.1 17.4 8 31.8 8c8 0 15.6 3.9 20.2 10.2C56.6 11.9 64.2 8 72.2 8 86.6 8 98 19.1 98 33.9c0 17.8-15.9 33-40.3 53.5-1 1-2.3 1.5-3.7 1.5z"/>
+          </svg>
+          <span class="heart-btn-label">Buka</span>
+        </button>
+      </div>
+    </section>
+
+    <!--Screen 2-->
+    <section id="screen-ucapan" class="screen">
+      <div class="content">
+        <p class="eyebrow">Untuk Kamu</p>
+        <h2 class="subheadline">Sepucuk Ucapan</h2>
+
+        <div class="card">
+          <p class="letter-text">
+            Sayang, tiga tahun bukan waktu yang singkat, tapi rasanya
+            kita baru mulai kemarin. Terima kasih sudah bertahan,
+            bertumbuh, dan tertawa bersamaku di setiap harinya.
+            Tulis ucapanmu sendiri di sini ya — ganti paragraf ini
+            langsung di file <code>index.html</code>.
+          </p>
+        </div>
+
+        <button class="heart-btn heart-btn--secondary" onclick="goTo('screen-kenangan')" aria-label="Lanjut ke kenangan">
+          <svg viewBox="0 0 100 90" class="heart-shape" aria-hidden="true">
+            <path d="M50 88.9c-1.4 0-2.7-.5-3.7-1.5C21.9 66.9 6 51.7 6 33.9 6 19.1 17.4 8 31.8 8c8 0 15.6 3.9 20.2 10.2C56.6 11.9 64.2 8 72.2 8 86.6 8 98 19.1 98 33.9c0 17.8-15.9 33-40.3 53.5-1 1-2.3 1.5-3.7 1.5z"/>
+          </svg>
+          <span class="heart-btn-label">Lanjut</span>
+        </button>
+      </div>
+    </section>
+
+    <!--Screen 3 photos videos-->
+
+    <section id="screen-kenangan" class="screen">
+      <div class="content content--wide">
+        <p class="eyebrow">Kenangan Kita</p>
+        <h2 class="subheadline">Momen yang Kusimpan</h2>
+
+        <div class="gallery">
+
+          <!-- ============================================================ -->
+          <!-- CONTOH BLOK FOTO. Copy-paste blok <figure> ini untuk tambah   -->
+          <!-- foto lain. Ganti "assets/foto/foto1.jpg" dengan file kamu.    -->
+          <!-- ============================================================ -->
+          <figure class="gallery-item">
+            <img src="assets/foto/lenscapephoto.jpg" alt="<3" loading="lazy">
+          </figure>
+
+
+
+          <!-- ============================================================ -->
+          <!-- CONTOH BLOK VIDEO. Copy-paste blok <figure> ini untuk tambah  -->
+          <!-- video lain. Ganti "assets/video/video1.mp4" dengan file kamu. -->
+          <!-- ============================================================ -->
+          <figure class="gallery-item">
+            <video controls preload="metadata" playsinline>
+              <source src="assets/video/videoanniv.mp4" type="video/mp4">
+              Browser kamu tidak mendukung pemutaran video.
+            </video>
+          </figure>
+
+        </div>
+
+        <div class="card">
+          <!-- ucapan closing web-->
+          <p class="letter-text">
+            Terima kasih untuk tiga tahun yang penuh warna. Semoga
+            tahun-tahun berikutnya kita isi dengan lebih banyak lagi
+            momen seperti foto dan video di atas. I love you.
+          </p>
+        </div>
+
+        <button class="pill-btn" onclick="goTo('screen-home')">
+          ← Kembali ke Awal
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
