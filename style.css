@@ -227,23 +227,21 @@ main {
   width: 100%;
 }
 
-/* FOTO: besar dulu (scale, bukan width, biar ga collapse di flex),
-   fade, lalu DIAM di ukuran normal selebar card */
 .gallery-item--photo {
-  width: 100%;
+  width: min(82vw, 720px);  /* <- ukuran BESAR di awal, dibatasi lebar layar */
+  max-width: 100%;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
-  transform-origin: center top;
-  transform: scale(1.15);   /* <- seberapa BESAR di awal, boleh diubah */
-  transition: transform 1.6s ease, opacity 0.9s ease;
+  transition: width 1.6s ease, opacity 0.9s ease;
 }
 
-/* Di layar sempit (HP), skala "besar"-nya dikecilkan lagi
-   biar tetap pas dan ga mepet ke tepi layar */
-@media (max-width: 600px) {
-  .gallery-item--photo {
-    transform: scale(1.08);
-  }
+.gallery-item--photo.is-fading {
+  opacity: 0;
+}
+
+.gallery-item--photo.is-small {
+  width: 100%;               /* mengecil, diam selebar card */
 }
 
 .gallery-item--photo.is-fading {
