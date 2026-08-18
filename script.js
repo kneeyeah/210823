@@ -16,6 +16,29 @@ function goTo(screenId) {
   } else {
     stopHeartField();
   }
+
+  // Foto kenangan: besar dulu, lalu fade mengecil ke lebar card
+  if (screenId === 'screen-kenangan') {
+    playPhotoIntro();
+  }
+}
+
+/* ANIMASI FOTO: BESAR -> FADE -> KECIL (SE-LEBAR CARD) */
+function playPhotoIntro() {
+  var photo = document.getElementById('mainPhoto');
+  if (!photo) return;
+
+  photo.classList.remove('is-small', 'is-fading');
+
+  window.setTimeout(function () {
+    photo.classList.add('is-fading');
+
+    window.setTimeout(function () {
+      photo.classList.add('is-small');
+      photo.classList.remove('is-fading');
+    }, 350);
+
+  }, 900); // foto tampil besar 0.9 detik sebelum mengecil
 }
 
 /* =====================================================
