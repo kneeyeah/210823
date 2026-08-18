@@ -10,11 +10,15 @@ function goTo(screenId) {
   // Selalu mulai dari atas tiap ganti layar
   document.getElementById(screenId).scrollTop = 0;
 
-  // Efek love cuma jalan/di-generate di halaman awal
+  // Efek love sekarang tetap jalan di SEMUA screen (home, ucapan, kenangan)
+  startHeartField();
+
+  // Di screen ucapan & kenangan, love dibuat blur + agak transparan
+  // biar ga ganggu foto/video/teks di depannya
   if (screenId === 'screen-home') {
-    startHeartField();
+    heartFieldEl.classList.remove('is-blurred');
   } else {
-    stopHeartField();
+    heartFieldEl.classList.add('is-blurred');
   }
 
   // Foto kenangan: besar dulu, lalu fade mengecil ke lebar card
@@ -22,7 +26,6 @@ function goTo(screenId) {
     playPhotoIntro();
   }
 }
-
 /* ANIMASI FOTO: BESAR -> FADE OUT -> KECIL -> FADE IN, lalu DIAM */
 function playPhotoIntro() {
   var photo = document.getElementById('mainPhoto');
