@@ -3,11 +3,11 @@
    Ganti nilai di sini kalau suatu saat mau ubah tema.
    ===================================================== */
 :root {
-  --navy-deep: #14253A;   /* biru lebih gelap, untuk gradient dasar   */
-  --navy:      #1E344F;   /* biru utama (sesuai request)              */
-  --pink:      #D1A9C2;   /* pink utama (sesuai request)              */
-  --pink-deep: #B885A8;   /* pink lebih gelap, untuk button ke-2      */
-  --cream:     #F7F1F4;   /* teks terang di atas biru                 */
+  --navy-deep: #14253A;   
+  --navy:      #1E344F;   
+  --pink:      #D1A9C2;   
+  --pink-deep: #B885A8;   
+  --cream:     #F7F1F4;   
   --cream-dim: rgba(247, 241, 244, 0.72);
 
   --font-display: 'Great Vibes', cursive;
@@ -289,6 +289,12 @@ main {
   pointer-events: none;
   overflow: hidden;
   z-index: 1;
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+
+#heart-field.is-blurred {
+  filter: blur(4px);   /* <- seberapa blur, boleh diubah */
+  opacity: 0.55;        /* <- seberapa transparan, boleh diubah */
 }
 
 .falling-heart {
