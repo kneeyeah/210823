@@ -85,14 +85,11 @@ function spawnHeart() {
 }
 
 function startHeartField() {
-  if (heartSpawnTimer) return; // sudah jalan, jangan dobel
-  var interval = reduceMotion ? 0 : 260;
+  if (heartSpawnTimer) return; // sudah jalan, jangan dobel dijalankan
 
-  if (reduceMotion) {
-    // Kalau user matikan animasi: tampilkan beberapa love statis saja
-    for (var i = 0; i < 12; i++) spawnHeart();
-    return;
-  }
+  // Interval spawn love: kalau device minta "reduced motion",
+  // spawn-nya diperlambat (bukan dihentikan) supaya tetap terus-menerus
+  var interval = reduceMotion ? 900 : 260;
 
   heartSpawnTimer = window.setInterval(spawnHeart, interval);
 }
