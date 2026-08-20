@@ -1,32 +1,25 @@
-/* =====================================================
-   NAVIGASI ANTAR LAYAR (home -> ucapan -> kenangan -> home)
-   ===================================================== */
+/* navigasi (home -> ucapan -> kenangan -> home)*/
 function goTo(screenId) {
   document.querySelectorAll('.screen').forEach(function (el) {
     el.classList.remove('active');
   });
   document.getElementById(screenId).classList.add('active');
 
-  // Selalu mulai dari atas tiap ganti layar
   document.getElementById(screenId).scrollTop = 0;
 
-  // Efek love sekarang tetap jalan di SEMUA screen (home, ucapan, kenangan)
   startHeartField();
 
-  // Di screen ucapan & kenangan, love dibuat blur + agak transparan
-  // biar ga ganggu foto/video/teks di depannya
   if (screenId === 'screen-home') {
     heartFieldEl.classList.remove('is-blurred');
   } else {
     heartFieldEl.classList.add('is-blurred');
   }
 
-  // Foto kenangan: besar dulu, lalu fade mengecil ke lebar card
   if (screenId === 'screen-kenangan') {
     playPhotoIntro();
   }
 }
-/* ANIMASI FOTO: BESAR -> FADE OUT -> KECIL -> FADE IN, lalu DIAM */
+
 function playPhotoIntro() {
   var photo = document.getElementById('mainPhoto');
   if (!photo) return;
@@ -34,18 +27,17 @@ function playPhotoIntro() {
   photo.classList.remove('is-small', 'is-fading');
 
   window.setTimeout(function () {
-    photo.classList.add('is-fading'); // mulai fade out (durasi 0.9s, lihat CSS)
+    photo.classList.add('is-fading'); 
 
     window.setTimeout(function () {
-      photo.classList.add('is-small');     // ganti ukuran selagi transparan
-      photo.classList.remove('is-fading'); // fade in lagi di ukuran kecil
-    }, 900); // HARUS SAMA dengan durasi transition opacity di CSS (0.9s)
+      photo.classList.add('is-small');     
+      photo.classList.remove('is-fading'); 
+    }, 900); 
 
-  }, 1800); // foto tampil BESAR selama 1.8 detik dulu sebelum fade, boleh diubah
+  }, 1800); 
 }
 
-/* VIDEO: sesuaikan rasio tampilan otomatis ke ukuran video ASLI,
-   supaya seluruh video kelihatan (ga kepotong / ga ke-zoom) */
+/* vid */
 document.querySelectorAll('.gallery-item--video video').forEach(function (vid) {
   vid.addEventListener('loadedmetadata', function () {
     if (vid.videoWidth && vid.videoHeight) {
@@ -53,9 +45,7 @@ document.querySelectorAll('.gallery-item--video video').forEach(function (vid) {
     }
   });
 });
-/* =====================================================
-   EFEK LOVE YANG BERJATUHAN
-   ===================================================== */
+/* love dropping effect */
 var heartFieldEl = document.getElementById('heart-field');
 var heartSpawnTimer = null;
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -65,10 +55,10 @@ function spawnHeart() {
   heart.className = 'falling-heart';
   heart.textContent = Math.random() > 0.5 ? '❤' : '♥';
 
-  var size = 12 + Math.random() * 22;      // ukuran love bervariasi
-  var left = Math.random() * 100;          // posisi horizontal acak
-  var duration = 6 + Math.random() * 6;    // kecepatan jatuh bervariasi
-  var drift = (Math.random() * 120 - 60);  // sedikit melenceng kiri/kanan
+  var size = 12 + Math.random() * 22;     
+  var left = Math.random() * 100;         
+  var duration = 6 + Math.random() * 6;    
+  var drift = (Math.random() * 120 - 60);  
 
   heart.style.left = left + 'vw';
   heart.style.fontSize = size + 'px';
@@ -78,17 +68,16 @@ function spawnHeart() {
 
   heartFieldEl.appendChild(heart);
 
-  // Bersihkan elemen setelah selesai animasi supaya DOM tidak menumpuk
+ 
   window.setTimeout(function () {
     heart.remove();
   }, duration * 1000 + 200);
 }
 
 function startHeartField() {
-  if (heartSpawnTimer) return; // sudah jalan, jangan dobel dijalankan
+  if (heartSpawnTimer) return; 
 
-  // Interval spawn love: kalau device minta "reduced motion",
-  // spawn-nya diperlambat (bukan dihentikan) supaya tetap terus-menerus
+ 
   var interval = reduceMotion ? 900 : 260;
 
   heartSpawnTimer = window.setInterval(spawnHeart, interval);
@@ -101,5 +90,4 @@ function stopHeartField() {
   }
 }
 
-/* Mulai efek love begitu halaman dibuka (kita ada di screen-home) */
 startHeartField();
